@@ -19,7 +19,7 @@ The image is now saved
 
 # Output example from 1.1.1.0 to 1.2.1.1
 
-
+![plot](./1_1_1_0_-1_2_1_1.png)
 
 #
 This repository (and the code under it) is under the Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) licence
