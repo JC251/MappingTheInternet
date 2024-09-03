@@ -1,6 +1,7 @@
 import numpy as np
 from PIL import Image
 import subprocess
+from math import ceil, sqrt
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 def ping_ip(ip):
@@ -40,8 +41,15 @@ def ip_to_int(ip):
 def int_to_ip(ip_int):
     return '.'.join([str((ip_int >> (8 * (3 - i))) & 0xFF) for i in range(4)])
 
-def create_image(results, width):
-    height = len(results) // width + (1 if len(results) % width > 0 else 0)
+def create_image(results, width, img_format):
+
+    if img_format == "S":
+        height = ceil(sqrt(len(results)))
+        width = ceil(sqrt(len(results)))
+    else:
+        height = len(results) // width + (1 if len(results) % width > 0 else 0)
+
+    
     image_data = np.zeros((height, width), dtype=np.uint8)
 
     for i, result in enumerate(results):

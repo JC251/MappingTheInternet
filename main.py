@@ -18,10 +18,16 @@ def get_save_location():
 def main():
     start_ip = input("Enter start IP (like 10.0.8.1): ")  # Change to your starting IP
     end_ip = input("Enter end IP (like 10.0.8.255): ")   # Change to your ending IP
-    width = 16                   # Width of the image
+    img_format = "D" #S for square, anything else for default fixed width
+
+    ############testing############
+    #start_ip = "1.1.250.0"
+    #end_ip = "1.2.1.1"    
+
+    width = 16 # Width of the image
 
     results = ping_ip_range(start_ip, end_ip)
-    image = create_image(results, width)
+    image = create_image(results, width, img_format)
 
     save_path = get_save_location()  # Get the save location from the user
     image.save(save_path)  # Save the image to the specified path
