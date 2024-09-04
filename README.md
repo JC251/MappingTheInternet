@@ -17,9 +17,12 @@ Maybe pip (pip3) is required to install the missing python package in a conda en
 4. Enter the folderpath used to save the image
 The image is now saved
 
-# Output example from 1.1.1.0 to 1.2.1.1
+# Output example from 1.1.1.0 to 1.2.1.1 (square vs custom width)
 
+![plot](./1_1_1_0_-1_2_1_1-square.png)
 ![plot](./1_1_1_0_-1_2_1_1.png)
 
 #
+Warning! This tool can ping a lot of IP. We do not encourage to use this tool as DDoS attack. Please respect GitHub, your Internet provider and the host TOS.
+
 This repository (and the code under it) is under the Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) licence
