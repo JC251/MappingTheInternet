@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from def_func import ping_ip_range, create_image  # Import the functions from def_func.py
+from def_func import ping_ip_range, create_image, scale_image  # Import the functions from def_func.py
 import os
 import time
 import threading
@@ -72,14 +72,15 @@ def main():
 
     # Start the execution of the main tasks
     results = ping_ip_range(start_ip, end_ip)
-    image = create_image(results, width, img_format, scale)
+    image = create_image(results, width, img_format)
+    scaled_image = scale_image(image, scale)
 
     # Stop the timer before saving the image
     stop_event.set()  # Signal the timer thread to stop
 
     total_time = time.time() - start_time
     save_path = get_save_location()  # Get the save location from the user
-    image.save(save_path)  # Save the image to the specified path
+    scaled_image.save(save_path)  # Save the image to the specified path
     print(f"Image saved to {save_path}")
 
     # Print total execution time

@@ -42,7 +42,7 @@ def ip_to_int(ip):
 def int_to_ip(ip_int):
     return '.'.join([str((ip_int >> (8 * (3 - i))) & 0xFF) for i in range(4)])
 
-def create_image(results, width, img_format, scale):
+def create_image(results, width, img_format):
 
     if img_format == "S":
         height = width = ceil(sqrt(len(results)))
@@ -61,6 +61,9 @@ def create_image(results, width, img_format, scale):
 
     image = Image.fromarray(image_data, 'L')  # 'L' mode for grayscale
 
-    image_scaled = image.resize((width * scale, height * scale), resample=Image.BOX) # Scale the image
 
-    return image_scaled
+    return image
+
+
+def scale_image(image, scale):  # Scale the image
+    return image.resize((image.width * scale, image.height * scale), resample=Image.BOX)
