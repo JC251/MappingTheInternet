@@ -31,8 +31,10 @@ def main():
     start_ip = input("Enter start IP (like 10.0.8.1): ")  # Change to your starting IP
     end_ip = input("Enter end IP (like 10.0.8.255): ")   # Change to your ending IP
 
+
     while True:
         user_input = input("Enter 'S' for single format or a number for width: ")
+
 
         if user_input.upper() == 'S':
             img_format = 'S'
@@ -48,6 +50,18 @@ def main():
 
         else:
             print("Invalid input. Please try again.")
+        
+    
+    while True:
+        scale_input = input("Enter scale factor of output image (positive integer): ")
+
+        if scale_input.isdigit() and int(scale_input) > 0:  # Check if the scale input is a positive integer
+            scale = int(scale_input)
+            break
+        else:
+            print("Invalid input. Please try again.")
+
+        
 
     # Start the timer thread
     start_time = time.time()
@@ -58,7 +72,7 @@ def main():
 
     # Start the execution of the main tasks
     results = ping_ip_range(start_ip, end_ip)
-    image = create_image(results, width, img_format)
+    image = create_image(results, width, img_format, scale)
 
     # Stop the timer before saving the image
     stop_event.set()  # Signal the timer thread to stop
