@@ -7,6 +7,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 def ping_ip(ip):
     """Ping a single IP address and return the result."""
     print(f"Pinging {ip}")  # Print the IP being pinged
+    
     # Use subprocess to call the system ping command
     try:
         output = subprocess.run(["ping", "-c", "1", "-W", "5", ip], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -44,8 +45,7 @@ def int_to_ip(ip_int):
 def create_image(results, width, img_format):
 
     if img_format == "S":
-        height = ceil(sqrt(len(results)))
-        width = ceil(sqrt(len(results)))
+        height = width = ceil(sqrt(len(results)))
     else:
         height = len(results) // width + (1 if len(results) % width > 0 else 0)
 
@@ -60,4 +60,10 @@ def create_image(results, width, img_format):
         image_data[-1, len(results) % width:] = 0
 
     image = Image.fromarray(image_data, 'L')  # 'L' mode for grayscale
+
+
     return image
+
+
+def scale_image(image, scale):  # Scale the image
+    return image.resize((image.width * scale, image.height * scale), resample=Image.BOX)
